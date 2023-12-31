@@ -1,6 +1,6 @@
 public class Solution {
     public static void main(String[] args) {
-        int [] array = {3, 6, 1, 7, 7, 12};
+        int [] array = {3, 6, 1, 1, 7, 12};
         System.out.println("The Total Sum of the Array Elements: " + getTotalSum(array));
         System.out.println("The Largest Element in Array: " + getLargestElement(array));
         boolean b = getEvenOddNumber(33);
@@ -8,8 +8,8 @@ public class Solution {
         reverseArray(array);
         System.out.println("The Factorial Value is: " + getFactorialValue(5));
         System.out.println("The Factorial Value in Recursive Way: " + getFactValue(7));
-
-        System.out.println("The Given String is Palindrome: " + isPalindrome("mom"));
+        char [] palindromString = {'M', 'O', 'M'};
+        System.out.println("The Given String is Palindrome: " + isPalindrome(palindromString));
         System.out.println("The Given Number is a Prime Number: " + getPrimeNumber(17));
         fibonacciSeries(13);
         // fibonacci series in recursive way
@@ -42,6 +42,12 @@ public class Solution {
         stringReversal("apple");
         checkArmstrongNumber(1634);
         findMaxandMin(array);
+        System.out.println("The Simple Interest Value is: " + calculateSimpleInterest(2400, 5, 2));
+        System.out.println("Convert Temperature from Celsius to Fahrenheit: " + getTemperature(34.2) + "F" );
+        checkInput('S');
+        System.out.println("The Second Largest Element: " + findSecondLargestElement(array));
+        char[] string = {'h','2','3','l','l','4','o','6','9','w','o','7','r','8','0','l','d','4'};
+        System.out.println("The Summation of All the Numbers in the String is: " + getSumInString(string));
     }
     // 1. Sum of Array Elements
    public static int getTotalSum (int[] arr){
@@ -114,10 +120,10 @@ public class Solution {
         }
     }
     // 6. Palindrome Check
-    public static boolean isPalindrome (String x){
+    public static boolean isPalindrome (char[] x){
             boolean palindrome = false;
-        for(int i = 0, j = x.length() - 1; j >= 0; i++, j--){
-            if (x.charAt(i) == x.charAt(j)){
+        for(int i = 0, j = x.length - 1; j >= 0; i++, j--){
+            if (x[i] == x[j]){
                  palindrome = true;
             }
             else {
@@ -324,5 +330,58 @@ public class Solution {
         System.out.println("The Maximum Element of the Array: " + max);
         System.out.println("The Minimum Element of the Array: " + min);
     }
+    // 21. Calculate Simple Interest
+    public static int calculateSimpleInterest(int principle, int interestRate, int time){
+        int simple_interest = (principle + interestRate + time) / 100;
+        return simple_interest;
+    }
+    // 22. Convert Temperature Celsius to Fahrenheit
+    public static double getTemperature(double c){
+        double f;
+        f = (9 / c) + 32;
+        return f;
+
+    }
+    // 23. checks whether an input character is an uppercase letter or lowercase letter or a special 24. character
+    public static void checkInput(char c){
+        if(c >= 'A' && c <= 'Z'){
+            System.out.println(c + " is an Uppercase Letter");
+        }
+        else if(c >= 'a' && c <= 'z'){
+            System.out.println(c + " is a Lowercase Letter");
+        }
+        else if(c == (char) 24){
+            System.out.println(c + " character is a Special 24. Character");
+        }
+        else {
+            System.out.println(c + " is neither uppercase, lowercase or special character");
+        }
+    }
+    // 24. Find Second Largest Number in Array
+    public static int findSecondLargestElement(int[] arr){
+        int max = arr[0];
+        int secondMax = arr[1];
+        for(int i = 0; i < arr.length; i++){
+            if (arr[i] > secondMax && secondMax > max){
+                secondMax = arr[i];
+                max = secondMax;
+            }
+        }
+        return secondMax;
+    }
+    // 25. Summation of All the Numbers in a string
+    public static int getSumInString(char[] s){
+        int sum = 0, intValue;
+        char c;
+        for(int i = 0; i < s.length; i++){
+            if(s[i] >= '0' && s[i] <= '9'){
+                c = s[i];
+                intValue = c - '0'; //using ascii value of c and 0
+                sum = sum + intValue;
+            }
+        }
+        return sum;
+    }
+
 
 }
